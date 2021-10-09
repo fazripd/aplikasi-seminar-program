@@ -29,6 +29,8 @@
                         <th>No</th>
                         <th>Nama Barang </th>
                         <th>Harga</th>
+                        <th>Description</th>
+                        <th>Actions</th>
                       </tr>
                       
                     </thead>
@@ -36,22 +38,22 @@
                         $no =1;
                     @endphp
                     <tbody id="tbody">
-                        {{--  @foreach ($index as $item)                        
+                        @foreach ($index as $item)                        
                         <tr style="color: black; text-align: center">
                             <th>{{ $no++}}</th>
-                            <th>{{ $item->name}}</th>
+                            <th>{{ $item->namabarang}}</th>
+                            <th>{{ $item->harga}}</th>
+                            <th>{{ $item->description}}</th>
                             <th>
                                 <a href="/kurir/delete/{{$item->id}}"><button type="button" id="btn" class="btn btn-danger">Delete</button></a>
                             </th>
                         </tr>
-                        @endforeach  --}}
+                        @endforeach
                     </tbody>
 
                     <tfoot>
                         <tr style="color: black; text-align: center">
-                            <th></th>
-                            <th><a href="/kurir/create"><button type="button" id="btn" class="btn btn-success">Tambah</button></a></th>
-                            <th></th>
+                            <th colspan="5"><a href="/barang/create"><button type="button" id="btn" class="btn btn-success">Tambah</button></a></th>
                         </tr>
                         
                     </tfoot>

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Transaksi;
 use App\Kurir;
+use App\Barang;
 use Auth;
 use PDF;
 class TransaksiController extends Controller
@@ -21,8 +22,9 @@ class TransaksiController extends Controller
      */
     public function index()
     {
+        $barang = Barang::all();
         $kurir = Kurir::all();
-        return view('transaksi', compact('kurir'));
+        return view('transaksi', compact('kurir', 'barang'));
     }
 
     /**
@@ -147,6 +149,13 @@ class TransaksiController extends Controller
         return view('laporan_rinci', ['buka' => $buka, 'table' => $table, 'sum' => $sum]);
     }
 
+    public function harga(Request $request)
+    {
+        $barang = Barang::where('id', $request->id)->get();
+        
+        return response()->json($barang);
+        
+    }
     public function cetak_pdf($id)
     {
         $sum = Transaksi::where('faktur', $id)

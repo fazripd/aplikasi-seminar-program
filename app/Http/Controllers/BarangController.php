@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Barang;
 class BarangController extends Controller
 {
     /**
@@ -13,7 +13,8 @@ class BarangController extends Controller
      */
     public function index()
     {
-        return view('barang');
+        $index = Barang::all();
+        return view('barang', compact('index'));
     }
 
     /**
@@ -23,7 +24,7 @@ class BarangController extends Controller
      */
     public function create()
     {
-        //
+        return view('barang_rinci');
     }
 
     /**
@@ -34,7 +35,12 @@ class BarangController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $store = Barang::insert([
+            'namabarang'=> $request->namabarang,
+            'harga' => $request->harga,
+            'description' => $request->description
+        ]);
+        return redirect('/barang');
     }
 
     /**

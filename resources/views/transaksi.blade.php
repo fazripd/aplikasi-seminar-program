@@ -58,8 +58,13 @@
                         <div class="form-group">
                             <label style="color: black" for="exampleFormControlInput1">Nama Barang</label>
                             <select class="form-control" id="namabarang" name="namabarang">
-                                <option value="">Aqua Galon</option>
-                            </select>                        
+                                <option selected>Pilih Barang</option>
+                                @foreach ($barang as $item)
+                                <option value="{{$item->id}}">{{$item->namabarang}}</option>
+                                @endforeach
+                            </select>      
+                            <input type="radio" name="lainnya" id="lainnya"><label for="lainnya">lainnya: </label><br>
+                            <input type="text" class="form-control" id="namabarangss" name="nambarang" placeholder="Masukan masukan pilihan lainnya" disabled>
                         </div>
                         
                         <div class="form-group">
@@ -67,7 +72,7 @@
                             <input type="number" class="form-control" id="jumlah" min="0" name="jumlah" placeholder="Masukan Jumlah Barang">
                         </div>
                        
-                        <div class="form-group">
+                        <div class="form-group" id="hargasatuan">
                             <label style="color: black" for="exampleFormControlInput1">Harga Satuan</label>
                             <input type="number" class="form-control" id="harga" min="0" name="harga" placeholder="Masukan Harga Satuan">
                         </div>
@@ -188,6 +193,32 @@
                 },
                 error: function(){
                     console.log('error')
+                }
+            })
+        })
+
+        $('#lainnya').on('change', function(){
+            $('#namabarangss').prop('disabled', false)
+        })
+
+        $('#namabarang').on('change', function(){
+            var harga = " ";
+            $.ajax({
+                type: 'get',
+                url: '/barang/harga',
+                data: {'id': document.getElementById('namabarang').value},
+                success: function(data){
+                    console.log(data)
+                    for(i=0; i< data.length;i++){
+                        harga+='<label style="color: black" for="exampleFormControlInput1">Harga Satuan</label>';
+                        harga+='<input type="number" class="form-control" id="harga" min="0" name="harga" value="'+data[i].harga+'">';
+                    }
+                    $('#hargasatuan').html(" ");
+                    $('#hargasatuan').append(harga);
+
+                },
+                error: function(){
+
                 }
             })
         })
