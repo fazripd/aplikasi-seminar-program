@@ -57,7 +57,9 @@
 
                         <div class="form-group">
                             <label style="color: black" for="exampleFormControlInput1">Nama Barang</label>
-                            <input type="text" class="form-control" id="namabarang" name="namabarang" placeholder="Masukan Nama Barang">
+                            <select class="form-control" id="namabarang" name="namabarang">
+                                <option value="">Aqua Galon</option>
+                            </select>                        
                         </div>
                         
                         <div class="form-group">

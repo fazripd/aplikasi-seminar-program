@@ -37,6 +37,9 @@ Route::get('/kurir/delete/{id}', 'KurirController@destroy');
 
 Route::get('/cetak_pdf/{id}', 'TransaksiController@cetak_pdf');
 
+Route::get('/barang', 'BarangController@index')->name('barang');
+
+
 
 
 
