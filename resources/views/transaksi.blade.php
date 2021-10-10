@@ -56,7 +56,8 @@
                         </div>
 
                         <div class="form-group">
-                            <label style="color: black" for="exampleFormControlInput1">Nama Barang</label>
+                            <input type="radio" name="rdbtn" id="rdbtn" checked>
+                            <label style="color: black" for="rdbtn">Nama Barang</label>
                             <select class="form-control" id="namabarang" name="namabarang">
                                 <option selected>Pilih Barang</option>
                                 @foreach ($barang as $item)
@@ -64,7 +65,7 @@
                                 @endforeach
                             </select>      
                             <input type="radio" name="lainnya" id="lainnya"><label for="lainnya">lainnya: </label><br>
-                            <input type="text" class="form-control" id="namabarangss" name="nambarang" placeholder="Masukan masukan pilihan lainnya" disabled>
+                            <input type="text" class="form-control" id="namabarangss" name="namabarang" placeholder="Masukan masukan pilihan lainnya" disabled>
                         </div>
                         
                         <div class="form-group">
@@ -197,8 +198,17 @@
             })
         })
 
+        $('#rdbtn').on('change', function(){
+            $('#namabarangss').prop('disabled', true)
+            $('#namabarang').prop('disabled', false)
+            $('#lainnya').prop('checked', false)
+
+        })
+
         $('#lainnya').on('change', function(){
             $('#namabarangss').prop('disabled', false)
+            $('#namabarang').prop('disabled', true)
+            $('#rdbtn').prop('checked', false)
         })
 
         $('#namabarang').on('change', function(){

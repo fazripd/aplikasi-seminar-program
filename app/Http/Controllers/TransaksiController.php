@@ -128,9 +128,11 @@ class TransaksiController extends Controller
     }
     public function gettanggal(Request $request)
     {
-        $date = Transaksi::select('faktur','tanggal')->where('tanggal', $request->id)
+        $date = Transaksi::select('tanggal', 'faktur')
+        ->whereBetween('tanggal', [ $request->id[0], $request->id[1] ])
         ->distinct()
         ->get();
+
         return response()->json($date);
         
     }

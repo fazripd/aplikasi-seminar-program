@@ -5,8 +5,6 @@
     <div class="row justify-content-center">
         <div class="col-md">
             <div class="card p-4">
-                
-
                 <div class="card-body">
                     @if (session('status'))
                         <div class="alert alert-success" role="alert">
@@ -23,11 +21,14 @@
 
                     {{--  form  --}}
                     <form id="form" style="color: black">
-                   
                         <div class="form-group" >
-                          <label style="color: black" for="exampleFormControlInput1">Tanggal Transaksi</label>
-                          <input type="date" class="form-control" id="tanggal" name="tanggal" value="{{Carbon\Carbon::now()->toDateString()}}">
+                          <label style="color: black" for="exampleFormControlInput1">Dari Tanggal</label>
+                          <input type="date" class="form-control" id="dari" name="dari" value="{{Carbon\Carbon::now()->toDateString()}}">
                         </div>
+                        <div class="form-group" >
+                            <label style="color: black" for="exampleFormControlInput1">Sampai Tanggal</label>
+                            <input type="date" class="form-control" id="sampai" name="sampai" value="{{Carbon\Carbon::now()->toDateString()}}">
+                          </div>
                         <button type="button" id="btn" class="btn btn-secondary">Cari</button>
                       </form>
                 </div>
@@ -61,16 +62,20 @@
 <script src="/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
+    
     $('#btn').on('click', function(){
         var tbody = " ";
         var no = 1;
+        var data = [];
+    data[0] = document.getElementById('dari').value;
+    data[1] = document.getElementById('sampai').value;
         $.ajax({
             type: 'get',
             url: '/gettanggaltransaksi',
-            data: {'id': document.getElementById('tanggal').value},
+            data: {'id': data},
             success: function(data){
                 console.log(data)
-                for(i=0; i<data.length; i++){
+                for(i=0; i < data.length; i++){
                     tbody+='<tr style="color: black;">';
                     tbody+='<th style="color: black; text-align:center;">'+ no++ +'</th>';
                     tbody+='<th>'+ data[i].tanggal+'</th>';
