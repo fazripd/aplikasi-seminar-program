@@ -41,8 +41,12 @@ Route::get('/barang', 'BarangController@index')->name('barang');
 Route::get('/barang/create', 'BarangController@create');
 Route::post('/barang/store', 'BarangController@store');
 
-//jquery
 
+Route::get('/laporan/download/{id}', function($id) {
+    //
+});
+
+//jquery
 Route::get('/barang/harga', 'TransaksiController@harga');
 
 
