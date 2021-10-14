@@ -153,7 +153,7 @@ class TransaksiController extends Controller
 
     public function harga(Request $request)
     {
-        $barang = Barang::where('id', $request->id)->get();
+        $barang = Barang::where('namabarang', $request->id)->get();
         
         return response()->json($barang);
         
@@ -168,5 +168,26 @@ class TransaksiController extends Controller
         $theader = Transaksi::select('faktur', 'tanggal')->where('faktur', $id)->distinct()->get();
         $pdf = PDF::loadview('laporan_pdf', compact('laporan', 'theader', 'table', 'sum'));
         return $pdf->download('laporan-transaksi.pdf');
+    }
+
+    public function download($id1, $id2)
+    {
+        $download = Transaksi::groupBy('faktur')
+        ->whereBetween('tanggal', [$id1,$id2])
+        ->selectRaw('faktur, tanggal, sum(total) as total')
+        ->get();
+        
+        $data = Transaksi::whereBetween('tanggal', [$id1,$id2])
+        ->get();
+        $rincian = Transaksi::select('namabarang')
+        ->where('faktur', $data)
+        ->get();
+        $sum = Transaksi::whereBetween('tanggal', [$id1,$id2])
+        ->sum('total');
+        $d1 = $id1;
+        $d2 = $id2;
+        $pdf = PDF::loadview('download-pdf-all', compact('download', 'rincian','data', 'sum', 'd1', 'd2'));
+        return $pdf->download('laporan-transaksi-all.pdf');
+        // return view('download-pdf-all', compact('download', 'rincian','data', 'sum', 'd1', 'd2'));
     }
 }

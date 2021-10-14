@@ -41,7 +41,7 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
 </head>
-  <img src="{{ ('img/header.jpg') }}" width="502" height="107" >
+  <img src="{{ public_path('assets/img/header.jpg') }}" width="502" height="107" >
 
                     <h1 style="text-align: center">Laporan Perhari Logistik</h1>
                     {{--  form  --}}
@@ -96,5 +96,5 @@
                   </table>
         
                   <footer>
-                    <img src="{{ ('img/footer.jpg') }}" width="502" height="107" >
+                    <img src="{{ public_path('assets/img/footer.jpg') }}" width="502" height="107" >
                   </footer>

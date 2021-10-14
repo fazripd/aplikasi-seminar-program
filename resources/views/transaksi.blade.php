@@ -61,7 +61,7 @@
                             <select class="form-control" id="namabarang" name="namabarang">
                                 <option selected>Pilih Barang</option>
                                 @foreach ($barang as $item)
-                                <option value="{{$item->id}}">{{$item->namabarang}}</option>
+                                <option value="{{$item->namabarang}}">{{$item->namabarang}}</option>
                                 @endforeach
                             </select>      
                             <input type="radio" name="lainnya" id="lainnya"><label for="lainnya">lainnya: </label><br>

@@ -99,7 +99,7 @@ $(document).ready(function(){
                 var date = [];
                 date[0] = document.getElementById('dari').value;
                 date[1] = document.getElementById('sampai').value;
-                tfoot+='<tr><td colspan="5" style="text-align: center"><a href="/laporan/download/'+date+'"><button class="btn btn-primary">Download</button></a></td></tr>';
+                tfoot+='<tr><td colspan="5" style="text-align: center"><a href="/laporan/download/'+date[0]+'/'+date[1]+'"><button class="btn btn-primary">Download</button></a></td></tr>';
                 
                 $('#tbody').html(" ");
                 $('#tbody').append(tbody);
